@@ -1,0 +1,32 @@
+@mixin switchIndicator {
+  position: absolute;
+  z-index: 800;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, .2);
+  opacity: .8;
+  color: #fff;
+  border-radius: 3px;
+  padding: 8px 12px;
+  transition: all .25s ease-in-out;
+
+  &.left {
+    left: 5px;
+  }
+
+  &.right {
+    right: 5px;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    background-color: rgba(0, 0, 0, .1);
+    color: #c9c9c9;
+  }
+
+  &:hover,
+  &:visited {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, .5);
+  }
+}

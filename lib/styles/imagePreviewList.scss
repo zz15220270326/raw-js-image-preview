@@ -1,0 +1,42 @@
+@import "./mixin.scss";
+
+@mixin imagePreviewList {
+  margin: 0 auto;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;
+
+    .inner {
+      position: relative;
+      right: 0;
+      transition: all .25s ease-in;
+    }
+
+    &-item {
+      display: none;
+      margin: 20px auto;
+      text-decoration: none;
+      list-style: none;
+      border: 1px solid transparent;
+      box-sizing: border-box;
+      transition: all .3s ease-in;
+
+      &.image-item-active {
+        display: block;
+      }
+
+      img {
+        z-index: 800;
+        transition: all .25s;
+        opacity: .75;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    
+    &::after {
+      @include clearfix;
+    }
+}

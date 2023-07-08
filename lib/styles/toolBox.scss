@@ -1,0 +1,41 @@
+@mixin toolBox {
+  &ul,
+  li,
+  &ol {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    width: 120px;
+    display: inline-block;
+  }
+
+  width: 100%;
+  list-style: none;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 15px;
+
+  .inner {
+    height: 44px;
+    line-height: 44px;
+    margin: 0 50px;
+    border-radius: 10px;
+    color: #fff;
+  }
+
+  &-item {
+    background-color:  rgba(0, 0, 0, .3);
+    box-sizing: border-box;
+    box-shadow: 0 0 2px #3d3d3d;
+    cursor: pointer;
+    transition: all .3s ease-in;
+
+    &:hover {
+      opacity: .5;
+    }
+  }
+}

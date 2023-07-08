@@ -1,0 +1,18 @@
+@import "animate.css";
+@import "./reset.scss";
+
+@import "./imagePreview.scss";
+@import "./toolBox.scss";
+@import "./descBoard.scss";
+
+.image-preview {
+  @include imagePreview;
+}
+
+.tool-box {
+  @include toolBox;
+}
+
+.desc-board {
+  @include descBoard;
+}

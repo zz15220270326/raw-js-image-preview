@@ -1,0 +1,38 @@
+html,
+body {
+  margin: 0;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  margin: auto;
+}
+
+button,
+input {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+input {
+  padding: 6px 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+}

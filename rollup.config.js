@@ -4,7 +4,7 @@ import { defineConfig } from 'rollup';
 import typescript from 'rollup-plugin-typescript2';
 
 import babel, {
-  getBabelOutputPlugin // 只能用于 cjs / esm
+  getBabelOutputPlugin
 } from '@rollup/plugin-babel';
 import terser from '@rollup/plugin-terser';
 import nodeResolve from '@rollup/plugin-node-resolve';
@@ -16,62 +16,118 @@ const { NODE_ENV } = process.env;
 
 console.log('== NODE_ENV ==', NODE_ENV);
 
-export default defineConfig({
-  input: {
-    'index': 'lib/index.ts',
+export default defineConfig([
+  {
+    input: {
+      'index': 'lib/index.ts',
+    },
+    output: [
+      {
+        dir: 'dist/esm',
+        format: 'esm',
+        plugins: [
+          nodeResolve(),
+        ],
+        sourcemap: true
+      },
+      {
+        dir: 'dist/cjs',
+        format: 'cjs',
+        plugins: [
+          commonjs(),
+        ],
+        sourcemap: true
+      },
+      {
+        dir: 'dist/umd',
+        format: 'umd',
+        name: 'ImagePreview',
+        plugins: [
+          getBabelOutputPlugin({
+            allowAllFormats: true,
+            // ...
+            presets: ['@babel/preset-env'],
+            comments: false,
+            minified: true
+          })
+        ],
+        sourcemap: true
+      }
+    ],
+    plugins: [
+      typescript({
+        target: 'es5',
+      }),
+      babel({
+        presets: ['@babel/preset-env']
+      }),
+      extensions({
+        extensions: ['.ts', '.js', '.json'],
+        resolveIndex: true
+      }),
+      // visualizer({
+      //   open: true,
+      //   gzipSize: true,
+      //   brotliSize: true,
+      //   filename: 'stats.html'
+      // })
+    ],
   },
-  output: [
-    {
-      dir: 'dist/esm',
-      format: 'esm',
-      plugins: [
-        nodeResolve(),
-        terser(),
-      ],
-      sourcemap: true
+  {
+    input: {
+      'index.min': 'lib/index.ts',
     },
-    {
-      dir: 'dist/cjs',
-      format: 'cjs',
-      plugins: [
-        commonjs(),
-        terser(),
-      ],
-      sourcemap: true
-    },
-    {
-      dir: 'dist/umd',
-      format: 'umd',
-      name: 'ImagePreview',
-      plugins: [
-        terser(),
-        getBabelOutputPlugin({
-          allowAllFormats: true,
-          // ...
-          presets: ['@babel/preset-env'],
-          comments: false,
-          minified: true
-        })
-      ],
-      sourcemap: true
-    }
-  ],
-  plugins: [
-    typescript({
-      target: 'es5',
-    }),
-    babel({
-      presets: ['@babel/preset-env']
-    }),
-    extensions({
-      extensions: ['.ts', '.js', '.json'],
-      resolveIndex: true
-    }),
-    // visualizer({
-    //   open: true,
-    //   gzipSize: true,
-    //   brotliSize: true,
-    //   filename: 'stats.html'
-    // })
-  ],
-});
+    output: [
+      {
+        dir: 'dist/esm',
+        format: 'esm',
+        plugins: [
+          nodeResolve(),
+        ],
+        sourcemap: true
+      },
+      {
+        dir: 'dist/cjs',
+        format: 'cjs',
+        plugins: [
+          commonjs(),
+        ],
+        sourcemap: true
+      },
+      {
+        dir: 'dist/umd',
+        format: 'umd',
+        name: 'ImagePreview',
+        plugins: [
+          getBabelOutputPlugin({
+            allowAllFormats: true,
+            // ...
+            presets: ['@babel/preset-env'],
+            comments: false,
+            minified: true
+          })
+        ],
+        sourcemap: true
+      }
+    ],
+    plugins: [
+      typescript({
+        target: 'es5',
+      }),
+      babel({
+        presets: ['@babel/preset-env']
+      }),
+      extensions({
+        extensions: ['.ts', '.js', '.json'],
+        resolveIndex: true
+      }),
+      terser()
+      // visualizer({
+      //   open: true,
+      //   gzipSize: true,
+      //   brotliSize: true,
+      //   filename: 'stats.html'
+      // })
+    ],
+  }
+]);

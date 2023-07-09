@@ -1,6 +1,6 @@
 {
   "name": "@jackzhang0715/raw-js-image-preview",
-  "version": "1.0.0",
+  "version": "1.0.0.1",
   "description": "An ImagePreview Component implied by raw js (actually typescript) (no VueJS or balala)",
   "main": "dist/esm/index.js",
   "type": "module",

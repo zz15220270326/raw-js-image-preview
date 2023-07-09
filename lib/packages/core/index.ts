@@ -1,4 +1,4 @@
-import type { UseImagePreviewOptions } from '../typings';
+import type { UseImagePreviewOptions, ImagePreviewData } from '../typings';
 
 import { htmlAdaptor } from '../shared/adaptors';
 
@@ -44,7 +44,6 @@ export function useImagePreview(options: UseImagePreviewOptions) {
   }
 
   init();
-
 
   function open() {
     const { $container } = elInstance.allNodes;
